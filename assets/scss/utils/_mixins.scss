@@ -1,0 +1,111 @@
+@use "sass:math";
+
+@mixin mediaQuery($bpt) {
+    @if (map_has_key($screen-width, $bpt)) {
+        @media (min-width: #{map_get($screen-width, $bpt)}px) {
+            @content;
+        }
+    }
+
+    @else {
+        @error 'No breakpoint named #{$bpt}';
+    }
+}
+
+@mixin mediaQueryMax($bpt) {
+    $maxBpt: calc($bpt - 1);
+
+    @if (map_has_key($screen-width, $bpt)) {
+        @media (max-width: #{map_get($screen-width, $bpt)}px) {
+            @content;
+        }
+    }
+
+    @else {
+        @error 'No breakpoint named #{$bpt}';
+    }
+}
+
+@mixin mediaQueryMobileOnly {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin mediaQueryTabletOnly {
+    @media (min-width: 768px) and (max-width: 1439px) {
+        @content;
+    }
+}
+
+@mixin rulesDisplay($screen: null) {
+
+    @each $className,
+    $_ in $rulesDisplay {
+        $prefixed-class-name: if($screen, '#{$screen}\\:#{$className}', '#{$className}');
+
+        .#{$prefixed-class-name} {
+
+            @each $rule,
+            $value in map_get($rulesDisplay, $className) {
+                #{$rule}: #{$value};
+            }
+        }
+    }
+}
+
+@mixin position-stretching($position: absolute, $z-index: null) {
+    position: $position;
+
+    @if $z-index {
+        z-index: $z-index;
+    }
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+@mixin object-fit($fit: fill, $position: null) {
+    -o-object-fit: $fit;
+    object-fit: $fit;
+
+    @if $position {
+        font-family: "object-fit: #{$fit}; object-position: #{$position}";
+
+        -o-object-position: $position;
+        object-position: $position;
+    }
+
+    @else {
+        font-family: "object-fit: #{$fit}";
+    }
+}
+
+@mixin text-props($fontSize, $lineHeight, $fontWeight: null, $fontFamily: null, $fontStyle: null) {
+    @if $fontFamily {
+        font-family: $fontFamily;
+    }
+    font-size: rem($fontSize);
+    @if $fontWeight {
+        font-weight: $fontWeight;
+    }
+    @if $fontStyle {
+        font-style: $fontStyle;
+    }
+    line-height: math.div($lineHeight, $fontSize);
+}
+
+@mixin text-truncate-by-row($row: 2) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
+}
+
+@mixin text-truncate() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

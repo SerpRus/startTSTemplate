@@ -1,0 +1,14 @@
+@import '../config';
+
+@font-face {
+    $font-name: 'roboto-regular';
+    font-family: $font-family;
+    font-weight: 400;
+
+    font-display: block;
+    src: url('#{$pathFonts}#{$font-name}.eot');
+    src: url('#{$pathFonts}#{$font-name}.eot?#iefix') format('embedded-opentype'),
+    url('#{$pathFonts}#{$font-name}.woff') format('woff'),
+    url("#{$pathFonts}#{$font-name}.woff2") format("woff2"),
+    url('#{$pathFonts}#{$font-name}.ttf') format('truetype'),
+}

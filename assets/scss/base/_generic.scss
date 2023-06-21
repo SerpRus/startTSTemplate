@@ -1,0 +1,62 @@
+body {
+    -webkit-text-size-adjust: 100%;
+
+    &.scroll-lock {
+        overflow: hidden;
+    }
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    -webkit-tap-highlight-color: transparent;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+button {
+    font-family: $font-family;
+
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+input,
+textarea {
+    font-family: $font-family-default;
+
+    color: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
