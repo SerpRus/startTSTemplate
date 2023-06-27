@@ -19,7 +19,7 @@ $font-size: 16px;
         $context: $context * 1px;
     }
 
-    @return math.div($px, $context * 1em);
+    @return calc($px / $context * 1em);
 }
 
 @function rem($px, $context: $font-size) {
@@ -31,5 +31,5 @@ $font-size: 16px;
         $context: $context * 1px;
     }
 
-    @return math.div($px, $context * 1rem);
+    @return calc($px / $context * 1rem);
 }
