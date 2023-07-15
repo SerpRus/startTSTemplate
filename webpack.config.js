@@ -82,6 +82,7 @@ module.exports = (env, argv) => {
         output: {
             filename: './js/index.js',
             path: filePath.dist,
+            publicPath: (isDev) ? '/' : '',
             clean: true,
         },
         devServer: {
@@ -92,6 +93,7 @@ module.exports = (env, argv) => {
             port: 3001,
             watchFiles: ['*.*'],
             open: true,
+            historyApiFallback: true,
         },
         module: {
             rules: [
